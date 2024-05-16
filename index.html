@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <div id="main-div">  
+
+      <div id="heading">
+         <h1>Calculate Your BMI</h1>
+      </div>
+
+      <div id="sub-div">
+
+               
+
+            <div> 
+                  <input id="weight" type="number" placeholder="weight ">
+            </div>
+
+            <div>
+                  <input id="height" type="number" placeholder="height in CM ">
+            </div>
+     </div>
+
+     <div>
+         <div> 
+            <button id="button" onclick="calculateBmi();    ">Calculate BMI</button>
+        </div>
+     </div>
+            
+      
+    <div id="sub-div2">
+
+        <div> 
+            <div id="result" aria-placeholder="Your BMI"></div>
+        </div>
+        
+
+        <div>
+          <div id="findings" aria-placeholder="findings"></div>
+        </div>
+
+     </div>    
+      
+      
+      
+      
+  </div>
+ 
+<script src="script.js">
+
+    function calculateBmi(){
+       const weight = document.getElementById('weight').value;
+
+       const Meter = cmInMeter();
+       const bmi = weight/(Meter*Meter);
+       const result = displayReport(bmi);
+
+       document.getElementById('result').innerHTML ='your BMI is <br>' + bmi 
+       document.getElementById('findings').innerHTML = result
+
+       document.getElementById('result').style.display = 'block';
+        document.getElementById('findings').style.display = 'block';
+    }
+
+    function cmInMeter(){
+      const height = document.getElementById('height').value;
+      const heightInMeter = height /100 ;
+      return heightInMeter;
+    }
+
+    function displayReport(parameter){
+
+     let report;
+
+      if(parameter <18.5 ){
+         report ='underweight'
+      }
+
+      if(parameter >= 18.5 && parameter <=24.9){
+         report = 'normal weight'
+      }
+
+      if(parameter >24.9){
+         report = 'over weight'
+      }
+
+      if(parameter >= 30){
+         report = 'obesity'
+      }
+      return report;
+    }
+
+
+
+</script>
+</body>
+</html>
+
+
+
+body{
+   background-color: rgb(226, 186, 228);
+ }
+ #main-div{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 30px;
+ 
+ }
+ #sub-div{
+   display: flex;
+  
+   align-items: center;
+   justify-content: center;
+   gap: 50px;
+   
+ }
+ #weight,#height{
+ 
+   height: 150px;
+   width: 150px;
+   border-radius: 50%;
+   text-align: center;
+   border: 5px solid rgb(152, 203, 213);
+   background-color: rgb(255, 0, 76);
+   color: white;
+   font-size: larger;
+   font-weight: 900;
+ }
+ 
+ #weight::placeholder,
+ #height::placeholder {
+   color:white; /* Change to the desired placeholder text color */
+ }
+ #button{
+   height: 150px;
+   width: 150px;
+   border-radius: 50%;
+   border: 5px solid blue;
+   background-color: black;
+   color: white;
+   font-weight: 900;
+ }
+ #result{
+   height: 50px;
+   width: 300px;
+   text-align: center;
+   border: 5px solid blue;
+   background-color: black;
+   color: white;
+   font-weight: 900;
+   padding: 10px;
+   border-radius: 60px;
+   display: none;
+ }
+ #sub-div2{
+   margin-top: 10px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   
+   
+ }
+ #findings{
+   height: 50px;
+   width: 300px;
+   text-align: center;
+   border: 5px solid blue;
+   background-color: rgb(6, 7, 6);
+   color: white;
+   font-weight: 900;
+   padding-top: 20px;
+   border-radius: 60px;
+   margin-top: 20px;
+   display: none;
+ 
+ }
+ #heading{
+   text-align: center;
+ }
